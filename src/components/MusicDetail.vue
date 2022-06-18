@@ -68,25 +68,27 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-xunhuan"></use>
         </svg>
+
         <svg class="icon" aria-hidden="true" @click="goPlay(-1)">
           <use xlink:href="#icon-shangyishoushangyige"></use>
         </svg>
-        <svg
-            class="icon bofang"
-            aria-hidden="true"
-            v-if="true"
-        >
+
+        <svg class="icon bofang" aria-hidden="true" v-if="isbtnShow" @click="play">
           <use xlink:href="#icon-bofang1"></use>
         </svg>
-        <svg class="icon bofang" aria-hidden="true" v-else>
+
+        <svg class="icon bofang" aria-hidden="true" v-else @click="play">
           <use xlink:href="#icon-zanting"></use>
         </svg>
+
         <svg class="icon" aria-hidden="true" @click="goPlay(1)">
           <use xlink:href="#icon-xiayigexiayishou"></use>
         </svg>
+
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-zu"></use>
         </svg>
+
       </div>
     </div>
 
@@ -102,7 +104,7 @@ export default {
   mounted() {
     console.log(this.musicList)
   },
-  props:["musicList"],
+  props:["musicList",'isbtnShow','play'],
   methods:{
     ...mapMutations(['updateDetailShow'])
   },

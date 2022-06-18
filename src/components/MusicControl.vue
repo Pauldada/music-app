@@ -18,27 +18,47 @@
       >
         <use xlink:href="#icon-bofanganniu"></use>
       </svg>
-
       <svg class="icon liebiao" aria-hidden="true" @click="play" v-else>
         <use xlink:href="#icon-weibiaoti--"></use>
       </svg>
-
       <svg class="icon liebiao" aria-hidden="true">
         <use xlink:href="#icon-zu"></use>
       </svg>
 
     </div>
 
+    <audio ref="audio" :src="`https://music.163.com/song/media/outer/url?id=${playList[playListIndex].id}.mp3`"
+    ></audio>
+
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 
 export default {
   name: "MusicControl",
   computed: {
-    ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow"])
+    ...mapState(["playList", "playListIndex", "isbtnShow"])
+  },
+  mounted() {
+    console.log(this.$refs);
+  },
+  methods:{
+
+    play: function () {
+      // 判断音乐是否播放
+      if (this.$refs.audio.paused) {
+        this.$refs.audio.play();
+        this.updateIsbtnShow(false);
+      } else {
+        this.$refs.audio.pause();
+        this.updateIsbtnShow(true);
+      }
+    },
+    ...mapMutations([
+      "updateIsbtnShow",
+    ]),
   }
 }
 </script>

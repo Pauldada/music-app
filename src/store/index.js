@@ -15,10 +15,14 @@ export default createStore({
       ar: [{name: "松本文紀"}]
     }],
     playListIndex: 0, //默认下标为0
+    isbtnShow:true //播放暂停按钮显隐
   },
   getters: {
   },
   mutations: {
+    updateIsbtnShow: function (state, value) {
+      state.isbtnShow = value
+    },
   },
   actions: {
   },

@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import {getMusicLyric} from "@/axios/api/API-ItemMusic";
 
 export default createStore({
   state: {
@@ -17,6 +18,7 @@ export default createStore({
     playListIndex: 0, //默认下标为0
     isbtnShow:true, //播放暂停按钮显隐
     detailShow: false, //歌曲详情页的显示
+    lyricList: {},//歌词
   },
   getters: {
   },
@@ -34,8 +36,16 @@ export default createStore({
     updateDetailShow: function (state) {
       state.detailShow = !state.detailShow
     },
+    updateLyricList: function (state, value) {
+      state.lyricList = value
+    },
   },
   actions: {
+    getLyric: async function (context, value) {
+      let res = await getMusicLyric(value)
+      // console.log(res);
+      context.commit("updateLyricList", res.data.lrc)
+    },
   },
   modules: {
   }

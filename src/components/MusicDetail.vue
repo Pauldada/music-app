@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="detailContent">
+    <div class="detailContent" v-show="isLyricShow">
       <img
           src="@/assets/music-point.png"
           alt=""
@@ -40,7 +40,18 @@
       />
     </div>
 
-
+    <div class="musicLyric" ref="musicLyric">{{lyricList.lyric}}
+<!--      <p-->
+<!--          v-for="item in lyric"-->
+<!--          :key="item"-->
+<!--          :class="{-->
+<!--        active:-->
+<!--          currentTime * 1000 >= item.time && currentTime * 1000 < item.pre,-->
+<!--      }"-->
+<!--      >-->
+<!--        {{ item.lrc }}-->
+<!--      </p>-->
+    </div>
 
     <div class="detailFooter">
 
@@ -100,9 +111,17 @@
 <script>
 import {Vue3Marquee} from "vue3-marquee";
 import "vue3-marquee/dist/style.css"
-import {mapMutations} from "vuex";
+import {mapMutations, mapState} from "vuex";
 export default {
   name: "MusicDetail",
+  data(){
+    return{
+      isLyricShow:false
+    }
+  },
+  computed:{
+    ...mapState(['lyricList'])
+  },
   mounted() {
     console.log(this.musicList)
   },

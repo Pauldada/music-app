@@ -53,8 +53,12 @@ export default {
   computed: {
     ...mapState(["playList", "playListIndex", "isbtnShow","detailShow"])
   },
+  updated() {
+    this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
+  },
   mounted() {
     // console.log(this.$refs);
+    this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
   },
   methods: {
 

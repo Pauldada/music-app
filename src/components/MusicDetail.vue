@@ -4,7 +4,7 @@
 
     <div class="detailTop">
       <div class="detailTopLeft">
-        <svg class="icon liebiao" aria-hidden="true">
+        <svg class="icon liebiao" aria-hidden="true" @click="updateDetailShow">
           <use xlink:href="#icon-zuojiantou"></use>
         </svg>
         <div class="leftMarquee">
@@ -96,12 +96,16 @@
 <script>
 import {Vue3Marquee} from "vue3-marquee";
 import "vue3-marquee/dist/style.css"
+import {mapMutations} from "vuex";
 export default {
   name: "MusicDetail",
   mounted() {
     console.log(this.musicList)
   },
   props:["musicList"],
+  methods:{
+    ...mapMutations(['updateDetailShow'])
+  },
   components:{
     Vue3Marquee
   }

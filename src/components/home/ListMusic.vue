@@ -13,6 +13,7 @@
       >
         <van-swipe-item v-for="item in state.musicList" :key="item">
 
+          <router-link :to="{path:'/itemMusic',query:{id:item.id}}">
             <img :src="item.picUrl" alt=""/>
             <span class="playCount">
 
@@ -23,6 +24,7 @@
               {{ changeCount(item.playCount) }}
             </span>
             <span class="name">{{ item.name }}</span>
+          </router-link>
 
         </van-swipe-item>
       </van-swipe>

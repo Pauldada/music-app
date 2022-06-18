@@ -8,7 +8,7 @@
           <use xlink:href="#icon-zuojiantou"></use>
         </svg>
         <div class="leftMarquee">
-          <p>{{musicList.al.name}}</p>
+          <Vue3Marquee style="color:#fff;">{{musicList.al.name}}</Vue3Marquee>
           <span v-for="item in musicList.ar" :key="item">
           {{ item.name }}
         </span>
@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import Vue3Marquee from "vue3-marquee";
+import {Vue3Marquee} from "vue3-marquee";
+import "vue3-marquee/dist/style.css"
 export default {
   name: "MusicDetail",
   mounted() {

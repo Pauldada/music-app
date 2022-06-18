@@ -29,7 +29,7 @@ export default {
       state.itemlist = res2.data.songs
 
       //酱数据存入session，以防止网页刷新导致数据加载渲染不同步
-      sessionStorage.setItem('itemDetail',JSON.stringify(state))
+      // sessionStorage.setItem('itemDetail',JSON.stringify(state))
     })
     return{state}
   },

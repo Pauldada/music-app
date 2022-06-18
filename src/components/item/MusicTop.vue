@@ -78,9 +78,9 @@ export default {
   name: "MusicTop",
   setup(props){
     // console.log(props)
-    if ((props.playlist.creator="")){
-      props.playlist.creator=JSON.parse(sessionStorage.getItem().playlist).creator
-    }
+    // if ((props.playlist.creator="")){
+    //   props.playlist.creator=JSON.parse(sessionStorage.getItem().playlist).creator
+    // }
     props.playlist.creator=""   //props传值选择sessionStorage
 
     // 对播放量的处理

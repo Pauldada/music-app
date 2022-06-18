@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: "MusicControl",
@@ -42,9 +42,9 @@ export default {
     ...mapState(["playList", "playListIndex", "isbtnShow"])
   },
   mounted() {
-    console.log(this.$refs);
+    // console.log(this.$refs);
   },
-  methods:{
+  methods: {
 
     play: function () {
       // 判断音乐是否播放
@@ -59,6 +59,16 @@ export default {
     ...mapMutations([
       "updateIsbtnShow",
     ]),
+  },
+  watch: {
+    playListIndex: function () {
+      //监听如果下标发生了改变，就自动播放音乐
+      this.$refs.audio.autoplay = true;
+      if (this.$refs.audio.paused) {
+        //如果是暂停状态，改变图标
+        this.updateIsbtnShow(false);
+      }
+    },
   }
 }
 </script>

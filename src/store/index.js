@@ -25,7 +25,10 @@ export default createStore({
     },
     updatePlayList: function (state, value) {
       state.playList = value
-      console.log(state.playList);
+      // console.log(state.playList);
+    },
+    updatePlayListIndex: function (state, value) {
+      state.playListIndex = value
     },
   },
   actions: {

@@ -53,8 +53,9 @@ export default {
   methods:{
     playMusic:function (i){
       this.updatePlayList(this.itemlist)
+      this.updatePlayListIndex(i)
     },
-    ...mapMutations(['updatePlayList'])
+    ...mapMutations(['updatePlayList','updatePlayListIndex'])
   }
 }
 </script>

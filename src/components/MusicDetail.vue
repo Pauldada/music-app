@@ -29,12 +29,14 @@
           src="@/assets/music-point.png"
           alt=""
           class="img_point"
+          :class="{img_point_active: !isbtnShow}"
       />
       <img src="@/assets/music-cd.png" alt="" class="img_cd" />
       <img
           :src="musicList.al.picUrl"
           alt=""
           class="img_ar"
+          :class="{img_ar_active:!isbtnShow,img_ar_paused:isbtnShow}"
       />
     </div>
 
@@ -160,18 +162,18 @@ export default {
     height: 3rem;
     position: absolute;
     left: 46%;
-    transform-origin: 0 0;
-    transform: rotate(-13deg);
-    transition: all 2s;
+    transform-origin: 16px 12px;
+    transform: rotate(-24deg);
+    transition: all 0.5s;
   }
   .img_point_active {
     width: 2rem;
     height: 3rem;
     position: absolute;
     left: 46%;
-    transform-origin: 0 0;
-    transform: rotate(0deg);
-    transition: all 2s;
+    transform-origin: 16px 12px;
+    transform: rotate(2deg);
+    transition: all 0.5s;
   }
 
   .img_cd {
@@ -181,18 +183,19 @@ export default {
     bottom: 2.3rem;
     z-index: -1;
   }
+
   .img_ar {
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 50%;
     position: absolute;
     bottom: 3.14rem;
-    animation: rotate_ar 10s linear infinite;
+    animation: rotate_ar 20s linear infinite;
   }
   .img_ar_active {
     animation-play-state: running;
   }
-  .img_ar_pauesd {
+  .img_ar_paused {
     animation-play-state: paused;
   }
   @keyframes rotate_ar {
@@ -203,7 +206,9 @@ export default {
       transform: rotateZ(360deg);
     }
   }
+
 }
+
 .musicLyric {
   width: 100%;
   height: 8rem;

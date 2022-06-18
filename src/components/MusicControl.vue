@@ -69,6 +69,12 @@ export default {
         this.updateIsbtnShow(false);
       }
     },
+    playList: function () {
+      if (this.isbtnShow) {
+        this.$refs.audio.autoplay = true;
+        this.updateIsbtnShow(false);
+      }
+    },
   }
 }
 </script>

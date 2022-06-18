@@ -1,20 +1,65 @@
 <template>
-  <div class="listMusic">
+  <div class="musicList">
     <div class="musicTop">
       <div class="title">发现好歌单</div>
       <div class="more">查看更多</div>
+    </div>
+    <div class="musicContent">
+      <van-swipe
+          :loop="false"
+          :width="130"
+          class="my-swipe"
+          :show-indicators="false"
+      >
+        <van-swipe-item v-for="item in state.musicList" :key="item">
+
+            <img :src="item.picUrl" alt=""/>
+            <span class="playCount">
+
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-gl-play-copy"></use>
+              </svg>
+
+              {{ changeCount(item.playCount) }}
+            </span>
+            <span class="name">{{ item.name }}</span>
+
+        </van-swipe-item>
+      </van-swipe>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "ListMusic"
-}
-</script>
+import {getMusicList} from "@/axios/api/API-Home";
+import {reactive, onMounted} from "vue";
 
+export default {
+  name: "ListMusic",
+  setup() {
+    const state = reactive({
+      musicList: [],
+    });
+
+    function changeCount(num) {
+      if (num >= 100000000) {
+        return (num / 100000000).toFixed(1) + "亿";
+      } else if (num >= 10000) {
+        return (num / 10000).toFixed(1) + "万";
+      }
+    }
+
+    onMounted(async () => {
+      let res = await getMusicList();
+      // console.log(res);
+      state.musicList = res.data.result;
+    });
+    return {state, changeCount};
+  },
+};
+</script>
 <style lang="less" scoped>
-.listMusic {
+.musicList {
   width: 100%;
   height: 5rem;
   padding: 0.2rem;
@@ -48,7 +93,7 @@ export default {
       img {
         width: 100%;
         height: 2.4rem;
-        border-radius: 0.2rem;
+        border-radius: 0.4rem;
         //   position: absolute;
       }
       .playCount {

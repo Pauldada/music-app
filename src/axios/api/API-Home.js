@@ -7,3 +7,10 @@ export function getBanner(){
         url:"/banner?type=2"
     })
 }
+//首页歌单-Personalized
+export function getMusicList(){
+    return service({
+        method:"GET",
+        url:"/personalized?limit=20"
+    })
+}

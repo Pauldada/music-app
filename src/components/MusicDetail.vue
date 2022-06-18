@@ -10,7 +10,7 @@
         <div class="leftMarquee">
           <Vue3Marquee style="color:#fff;">{{musicList.al.name}}</Vue3Marquee>
           <span v-for="item in musicList.ar" :key="item">
-          {{ item.name }}
+          {{ item.name }} &nbsp
         </span>
           <svg class="icon liebiao" aria-hidden="true">
             <use xlink:href="#icon-youjiantou1"></use>
@@ -24,22 +24,72 @@
       </div>
     </div>
 
-    <div class="detailContent" v-show="!isLyricShow">
+    <div class="detailContent">
       <img
           src="@/assets/music-point.png"
           alt=""
           class="img_point"
-          :class="{ img_point_active: !isbtnShow }"
       />
       <img src="@/assets/music-cd.png" alt="" class="img_cd" />
       <img
           :src="musicList.al.picUrl"
           alt=""
           class="img_ar"
-          @click="isLyricShow = true"
-          :class="{ img_ar_active: !isbtnShow, img_ar_pauesd: isbtnShow }"
       />
     </div>
+
+
+
+    <div class="detailFooter">
+
+      <div class="footerTop">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-aixin"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-iconfontzhizuobiaozhun023146"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-yinlechangpian"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-iconfontzhizuobiaozhun023110"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-liebiao-"></use>
+        </svg>
+      </div>
+
+      <div class="footerContent">
+        <input type="range" class="range" min="0" step="0.05">
+      </div>
+
+      <div class="footer">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-xunhuan"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" @click="goPlay(-1)">
+          <use xlink:href="#icon-shangyishoushangyige"></use>
+        </svg>
+        <svg
+            class="icon bofang"
+            aria-hidden="true"
+            v-if="true"
+        >
+          <use xlink:href="#icon-bofang1"></use>
+        </svg>
+        <svg class="icon bofang" aria-hidden="true" v-else>
+          <use xlink:href="#icon-zanting"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" @click="goPlay(1)">
+          <use xlink:href="#icon-xiayigexiayishou"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-zu"></use>
+        </svg>
+      </div>
+    </div>
+
   </div>
 </template>
 

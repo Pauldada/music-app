@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    home
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-31liebiao"></use>
+    </svg>
   </div>
 </template>
 

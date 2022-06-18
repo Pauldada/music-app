@@ -23,6 +23,13 @@
   </div>
 
 </template>
+
+<script>
+export default {
+  name: "TopNav"
+}
+</script>
+
 <style lang="less" scoped>
 .topNav {
   width: 100%;

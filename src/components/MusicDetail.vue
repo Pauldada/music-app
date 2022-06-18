@@ -23,6 +23,23 @@
         </svg>
       </div>
     </div>
+
+    <div class="detailContent" v-show="!isLyricShow">
+      <img
+          src="@/assets/music-point.png"
+          alt=""
+          class="img_point"
+          :class="{ img_point_active: !isbtnShow }"
+      />
+      <img src="@/assets/music-cd.png" alt="" class="img_cd" />
+      <img
+          :src="musicList.al.picUrl"
+          alt=""
+          class="img_ar"
+          @click="isLyricShow = true"
+          :class="{ img_ar_active: !isbtnShow, img_ar_pauesd: isbtnShow }"
+      />
+    </div>
   </div>
 </template>
 
@@ -82,7 +99,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
-  .img_needle {
+  .img_point {
     width: 2rem;
     height: 3rem;
     position: absolute;
@@ -91,7 +108,7 @@ export default {
     transform: rotate(-13deg);
     transition: all 2s;
   }
-  .img_needle_active {
+  .img_point_active {
     width: 2rem;
     height: 3rem;
     position: absolute;

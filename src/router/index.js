@@ -10,7 +10,7 @@ const routes = [
     {
         path: '/itemMusic',
         name: 'ItemMusic',
-        component: ()=>import('../views/ItemMusic')
+        component: ()=>import('../views/ItemMusicView')
     },
 
 ]

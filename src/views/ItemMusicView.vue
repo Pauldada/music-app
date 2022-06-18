@@ -1,13 +1,12 @@
 <template>
-  <div class="item-music">
-    item-music
-  </div>
+  <MusicTop :playlist="state.playlist"/>
 </template>
 
 <script>
 import {useRoute} from 'vue-router'
 import {onMounted, reactive} from "vue";
 import {getMusicItemList} from "@/axios/api/API-ItemMusic";
+import MusicTop from "@/components/item/MusicTop";
 
 export default {
   name: "ItemMusic",
@@ -25,6 +24,10 @@ export default {
       state.playlist = res.data.playlist;
 
     })
+    return{state}
+  },
+  components:{
+    MusicTop
   }
 }
 </script>

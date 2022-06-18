@@ -42,12 +42,20 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   name: "MusicList",
   setup(props) {
     // console.log(props)
   },
-  props: ['itemlist', 'subscribedCount']
+  props: ['itemlist', 'subscribedCount'],
+  methods:{
+    playMusic:function (i){
+      this.updatePlayList(this.itemlist)
+    },
+    ...mapMutations(['updatePlayList'])
+  }
 }
 </script>
 

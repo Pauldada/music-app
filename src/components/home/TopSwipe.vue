@@ -9,22 +9,19 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { reactive,onMounted} from "vue";
+import {getBanner} from "@/axios/api/API-Home";
 
 export default {
   name: "TopSwipe",
   setup() {
     const state = reactive({
-      images: [
-        'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
-        'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
-      ]
+      images: []
     });
-    onMounted(()=>{
-      axios.get('http://localhost:3000/banner?type=2').then((res)=>{
-        state.images = res.data.banners
-      })
+    onMounted(async ()=>{
+      let res = await getBanner()
+      // console.log(res)
+      state.images = res.data.banners
     })
     return { state };
   },

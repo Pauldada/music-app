@@ -1,16 +1,15 @@
 <template>
   <div class="home">
-    <svg class="icon" aria-hidden="true">
-      <use xlink:href="#icon-31liebiao"></use>
-    </svg>
+    <TopNav />
   </div>
 </template>
 
 <script>
-
+import TopNav from '@/components/home/TopNav'
 export default {
   name: 'HomeView',
   components: {
+    TopNav
   }
 }
 </script>

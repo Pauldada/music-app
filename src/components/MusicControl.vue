@@ -30,16 +30,25 @@
     <audio ref="audio" :src="`https://music.163.com/song/media/outer/url?id=${playList[playListIndex].id}.mp3`"
     ></audio>
 
+    <van-popup
+        v-model:show="detailShow"
+        position="right"
+        :style="{ height: '100%', width: '100%' }"
+    >
+      <MusicDetail/>
+    </van-popup>
+
   </div>
 </template>
 
 <script>
 import {mapState, mapMutations} from 'vuex'
+import MusicDetail from "@/components/MusicDetail";
 
 export default {
   name: "MusicControl",
   computed: {
-    ...mapState(["playList", "playListIndex", "isbtnShow"])
+    ...mapState(["playList", "playListIndex", "isbtnShow","detailShow"])
   },
   mounted() {
     // console.log(this.$refs);
@@ -58,6 +67,7 @@ export default {
     },
     ...mapMutations([
       "updateIsbtnShow",
+      "updateDetailShow"
     ]),
   },
   watch: {
@@ -75,6 +85,9 @@ export default {
         this.updateIsbtnShow(false);
       }
     },
+  },
+  components:{
+    MusicDetail
   }
 }
 </script>

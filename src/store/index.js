@@ -15,7 +15,8 @@ export default createStore({
       ar: [{name: "松本文紀"}]
     }],
     playListIndex: 0, //默认下标为0
-    isbtnShow:true //播放暂停按钮显隐
+    isbtnShow:true, //播放暂停按钮显隐
+    detailShow: false, //歌曲详情页的显示
   },
   getters: {
   },
@@ -29,6 +30,9 @@ export default createStore({
     },
     updatePlayListIndex: function (state, value) {
       state.playListIndex = value
+    },
+    updateDetailShow: function (state) {
+      state.detailShow = !state.detailShow
     },
   },
   actions: {

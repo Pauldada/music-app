@@ -1,6 +1,16 @@
 <template>
   <router-view/>
+  <MusicControl/>
 </template>
+
+<script>
+import MusicControl from "@/components/MusicControl";
+export default {
+  components:{
+    MusicControl
+  }
+}
+</script>
 
 <style lang="less">
 *{

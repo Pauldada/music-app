@@ -38,6 +38,10 @@
         </div>
       </div>
     </div>
+
+    <div class="bottom">
+
+    </div>
   </div>
 </template>
 
@@ -61,6 +65,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.bottom{
+  width: 100%;
+  height: 50px;
+}
 .itemMusicList {
   width: 100%;
   height: 10rem;

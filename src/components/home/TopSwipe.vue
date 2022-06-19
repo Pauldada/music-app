@@ -35,7 +35,7 @@ export default {
     height: 3rem;
 
     .van-swipe-item {
-      padding: 0 0.2rem;
+      padding: 0 0.3rem;
 
       img {
         width: 100%;

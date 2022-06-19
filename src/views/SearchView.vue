@@ -1,49 +1,51 @@
 <template>
-  <div class="searchTop">
-    <input
-        type="text"
-        placeholder="Please enter your search key"
-        v-model="searchKey"
-        @keydown.enter="enterKey"
-    />
-    <svg class="icon" style="transform-origin: 50% 50%;transform: rotate(90deg);" aria-hidden="true" @click="backHome">
-      <use xlink:href="#icon-zuojiantou"></use>
-    </svg>
-  </div>
+  <div class="search">
+    <div class="searchTop">
+      <input
+          type="text"
+          placeholder="Please enter your search key"
+          v-model="searchKey"
+          @keydown.enter="enterKey"
+      />
+      <svg class="icon" style="transform-origin: 50% 50%;transform: rotate(90deg);" aria-hidden="true" @click="backHome">
+        <use xlink:href="#icon-zuojiantou"></use>
+      </svg>
+    </div>
 
-  <div class="searchHistory">
-    <span class="searchSpan">搜索历史</span>
-    <span
-        v-for="item in keyWordList"
-        :key="item"
-        class="spanKey"
-        @click="searchHistory(item)"
-    >
+    <div class="searchHistory">
+      <span class="searchSpan">搜索历史</span>
+      <span
+          v-for="item in keyWordList"
+          :key="item"
+          class="spanKey"
+          @click="searchHistory(item)"
+      >
       {{ item }}
     </span>
-    <svg class="icon" aria-hidden="true" @click="delHistory">
-      <use xlink:href="#icon-shanchu"></use>
-    </svg>
-  </div>
+      <svg class="icon" aria-hidden="true" @click="delHistory">
+        <use xlink:href="#icon-shanchu"></use>
+      </svg>
+    </div>
 
-  <div class="itemList">
-    <div class="item" v-for="(item, i) in searchList" :key="i">
-      <div class="itemLeft" @click="updateIndex(item)">
-        <span class="leftSpan">{{ i + 1 }}</span>
-        <div>
-          <p>{{ item.name }}</p>
-          <span v-for="(item1, index) in item.artists" :key="index">{{
-              item1.name
-            }}</span>
+    <div class="itemList">
+      <div class="item" v-for="(item, i) in searchList" :key="i">
+        <div class="itemLeft" @click="updateIndex(item)">
+          <span class="leftSpan">{{ i + 1 }}</span>
+          <div>
+            <p>{{ item.name }}</p>
+            <span v-for="(item1, index) in item.artists" :key="index">{{
+                item1.name
+              }}</span>
+          </div>
         </div>
-      </div>
-      <div class="itemRight">
-        <svg class="icon bofang" aria-hidden="true" v-if='item.mvid !==0'>
-          <use xlink:href="#icon-shipin"></use>
-        </svg>
-        <svg class="icon liebiao" aria-hidden="true">
-          <use xlink:href="#icon-31liebiao"></use>
-        </svg>
+        <div class="itemRight">
+          <svg class="icon bofang" aria-hidden="true" v-if='item.mvid !==0'>
+            <use xlink:href="#icon-shipin"></use>
+          </svg>
+          <svg class="icon liebiao" aria-hidden="true">
+            <use xlink:href="#icon-31liebiao"></use>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -111,6 +113,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.search{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
 .searchTop {
   width: 100%;
   height: 1rem;
@@ -125,6 +132,7 @@ export default {
     border-bottom: 1px solid #999;
     width: 90%;
     padding: 0.1rem;
+    border-radius: 50px;
   }
 }
 
@@ -160,7 +168,7 @@ export default {
 .itemList {
   width: 100%;
   padding: .2rem;
-  height: 85%;
+  height: 80%;
   overflow: scroll;
 
   .item {

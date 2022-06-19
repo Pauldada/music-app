@@ -2,7 +2,7 @@
   <div class="musicList">
     <div class="musicTop">
       <div class="title">发现好歌单</div>
-      <div class="more">查看更多</div>
+      <div class="more">查看更多 > </div>
     </div>
     <div class="musicContent">
       <van-swipe
@@ -76,11 +76,13 @@ export default {
       font-weight: 900;
     }
     .more {
-      border: 1px solid #ccc;
+      border: 2px solid #f5c9ff;
       text-align: center;
-      line-height: 0.6rem;
+      line-height: 0.56rem;
       padding: 0 0.2rem;
       border-radius: 0.4rem;
+      background: rgba(0, 0, 0, 0.40);
+      color: white;
     }
   }
   .musicContent {

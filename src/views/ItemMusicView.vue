@@ -24,7 +24,7 @@ export default {
       // console.log(res1);
       state.playlist = res1.data.playlist;
 
-      let res2 = await getItemList({id,limit:31,offset:0})  // 获取歌单所有曲目
+      let res2 = await getItemList({id,limit:30,offset:0})  // 获取歌单所有曲目
       // console.log(res2)
       state.itemlist = res2.data.songs
 

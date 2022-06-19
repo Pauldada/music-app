@@ -30,7 +30,7 @@
         v-model:show="searchShow"
         position="top"
         :style="{
-          height: '90%',
+          height: '85%',
           width: '100%',
         }"
         round="round"
@@ -89,6 +89,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(56, 56, 56, 0.15);
+  border-radius: 16px;
 
   .topContent ul{
     height: 100%;

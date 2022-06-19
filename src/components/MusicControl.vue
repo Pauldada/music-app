@@ -125,7 +125,7 @@ export default {
 <style lang="less" scoped>
 .musicControl {
   width: 100%;
-  height: 1.6rem;
+  height: 1.1rem;
   background-color: rgba(141, 134, 165, 0.75);
   position: fixed;
   bottom: 0;
@@ -142,11 +142,13 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: end;
+    color: white;
 
     img {
-      width: 1rem;
-      height: 1rem;
+      width: 1.2rem;
+      height: 1.2rem;
       border-radius: 50%;
+      border: 3px solid rgba(0, 0, 0, 1);
     }
   }
 
@@ -156,6 +158,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: end;
+    color: white;
 
     .icon {
       width: 0.6rem;

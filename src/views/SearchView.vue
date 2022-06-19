@@ -26,7 +26,27 @@
     </svg>
   </div>
 
-
+  <div class="itemList">
+    <div class="item" v-for="(item, i) in searchList" :key="i">
+      <div class="itemLeft">
+        <span class="leftSpan">{{ i + 1 }}</span>
+        <div>
+          <p>{{ item.name }}</p>
+          <span v-for="(item1, index) in item.artists" :key="index">{{
+              item1.name
+            }}</span>
+        </div>
+      </div>
+      <div class="itemRight">
+        <svg class="icon bofang" aria-hidden="true" v-if='item.mvid !==0'>
+          <use xlink:href="#icon-shipin"></use>
+        </svg>
+        <svg class="icon liebiao" aria-hidden="true">
+          <use xlink:href="#icon-31liebiao"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

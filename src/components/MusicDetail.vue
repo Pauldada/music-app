@@ -4,7 +4,7 @@
 
     <div class="detailTop">
       <div class="detailTopLeft">
-        <svg class="icon liebiao" aria-hidden="true" @click="updateDetailShow">
+        <svg class="icon liebiao" aria-hidden="true" @click="backHome">
           <use xlink:href="#icon-zuojiantou"></use>
         </svg>
         <div class="leftMarquee">
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="detailContent" v-show="isLyricShow">
+    <div class="detailContent" v-show="!isLyricShow">
       <img
           src="@/assets/music-point.png"
           alt=""
@@ -37,10 +37,11 @@
           alt=""
           class="img_ar"
           :class="{img_ar_active:!isbtnShow,img_ar_paused:isbtnShow}"
+          @click="isLyricShow = true"
       />
     </div>
 
-    <div class="musicLyric" ref="musicLyric">
+    <div class="musicLyric" ref="musicLyric" v-show="isLyricShow" @click="isLyricShow = false">
             <p
                 v-for="item in lyric"
                 :key="item"
@@ -156,6 +157,12 @@ export default {
   },
   props: ["musicList", 'isbtnShow', 'play'],
   methods: {
+    backHome: function () {
+      this.updateDetailShow();
+      setTimeout(()=>{
+        this.isLyricShow = false;
+      },500);
+    },
     ...mapMutations(['updateDetailShow'])
   },
   watch: {

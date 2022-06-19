@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import {getSearchMusic} from "@/axios/api/API-Home";
+import {getSearchMusic,getMusic} from "@/axios/api/API-Home";
 
 export default {
   name: "SearchView",
@@ -92,10 +92,10 @@ export default {
       // console.log(res);
       this.searchList = res.data.result.songs;
     },
-    updateIndex: function (item) {
-      console.log(item)
-      item.al = item.album
-      item.al.picUrl = item.album.artist.img1v1Url
+    updateIndex: async function (item) {
+      let res = await getMusic(item.id)
+      // console.log(res.data.songs[0])
+      item.al = res.data.songs[0].al
       this.$store.commit("pushPlayList", item)
       this.$store.commit("updatePlayListIndex", this.$store.state.playList.length - 1)
     }

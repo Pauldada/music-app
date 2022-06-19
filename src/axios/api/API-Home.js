@@ -21,3 +21,10 @@ export function getSearchMusic(data){
         url:`/search?keywords=${data}`
     })
 }
+
+export function getMusic(data){
+    return service({
+        method:"GET",
+        url:`/song/detail?ids=${data}`
+    })
+}

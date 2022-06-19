@@ -5,16 +5,22 @@
     </svg>
     <input
         type="text"
-        placeholder="陈奕迅"
+        placeholder="Please enter your search key"
+        v-model="searchKey"
         @keydown.enter="enterKey"
     />
   </div>
 
   <div class="searchHistory">
-    <span class="searchSpan">历史</span>
-    <span>
+    <span class="searchSpan">搜索历史</span>
+    <span
+        v-for="item in keyWordList"
+        :key="item"
+        class="spanKey"
+    >
+      {{ item }}
     </span>
-    <svg class="icon" aria-hidden="true" @click="delHistory">
+    <svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-shanchu"></use>
     </svg>
   </div>
@@ -24,7 +30,27 @@
 
 <script>
 export default {
-  name: "SearchView"
+  name: "SearchView",
+  data(){
+    return{
+      keyWordList:[],
+      searchKey:""
+    }
+  },
+  mounted() {
+    if (JSON.parse(localStorage.getItem("keyWordList"))) {
+      this.keyWordList = JSON.parse(localStorage.getItem("keyWordList"));
+    } else {
+      this.keyWordList = [];
+    }
+  },
+  methods:{
+    enterKey: async function (){
+      this.keyWordList.unshift(this.searchKey);
+      localStorage.setItem("keyWordList", JSON.stringify(this.keyWordList));
+      this.searchKey = "";
+    }
+  }
 }
 </script>
 
@@ -51,10 +77,10 @@ export default {
     font-weight: 700;
   }
   .spanKey {
-    padding: 0.1rem 0.2rem;
+    padding: 0.05rem 0.2rem;
     background-color: rgb(185, 169, 169);
     border-radius: 0.4rem;
-    margin: 0.1rem 0.2rem;
+    margin-left: 0.2rem;
     display: inline-block;
   }
   .icon {

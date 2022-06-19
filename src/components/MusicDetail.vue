@@ -72,7 +72,7 @@
       </div>
 
       <div class="footerContent">
-        <input type="range" class="range" min="0" :max="duration" v-model="currentTime" step="0.05">
+        <input type="range" class="range" @change="ohno" min="0" :max="duration" v-model="currentTime" step="0.05">
       </div>
 
       <div class="footer">
@@ -172,6 +172,9 @@ export default {
         index =0
       }
       this.updatePlayListIndex(index)
+    },
+    ohno:function (){
+      this.$toast("没写完，别慌");
     },
     ...mapMutations(['updateDetailShow','updatePlayListIndex'])
   },

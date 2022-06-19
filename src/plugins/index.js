@@ -1,7 +1,7 @@
-import { Swipe, SwipeItem,Popup } from 'vant';
+import { Swipe, SwipeItem,Popup,Toast } from 'vant';
 // 放入数组中
 let plugins=[
-    Swipe,SwipeItem,Popup
+    Swipe,SwipeItem,Popup,Toast
 ]
 export default function getVant(app){
     plugins.forEach((item)=>{

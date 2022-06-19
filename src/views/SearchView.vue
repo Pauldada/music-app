@@ -17,6 +17,7 @@
         v-for="item in keyWordList"
         :key="item"
         class="spanKey"
+        @click="searchHistory(item)"
     >
       {{ item }}
     </span>
@@ -29,12 +30,15 @@
 </template>
 
 <script>
+import {getSearchMusic} from "@/axios/api/API-Home";
+
 export default {
   name: "SearchView",
   data(){
     return{
       keyWordList:[],
-      searchKey:""
+      searchKey:"",
+      searchList:[]
     }
   },
   mounted() {
@@ -54,11 +58,19 @@ export default {
         this.keyWordList.splice(this.keyWordList.length - 1, 1);
       }
       localStorage.setItem("keyWordList", JSON.stringify(this.keyWordList));
+      let res = await getSearchMusic(this.searchKey);
+      // console.log(res);
+      this.searchList = res.data.result.songs;
       this.searchKey = "";
     },
     delHistory: function () {
       localStorage.removeItem("keyWordList");
       this.keyWordList = [];
+    },
+    searchHistory: async function (item) {
+      let res = await getSearchMusic(item);
+      // console.log(res);
+      this.searchList = res.data.result.songs;
     },
   }
 }

@@ -110,6 +110,7 @@
 import {Vue3Marquee} from "vue3-marquee";
 import "vue3-marquee/dist/style.css"
 import {mapMutations, mapState} from "vuex";
+import {Toast} from "vant";
 
 export default {
   name: "MusicDetail",
@@ -174,7 +175,7 @@ export default {
       this.updatePlayListIndex(index)
     },
     ohno:function (){
-      this.$toast("没写完，别慌");
+      this.$toast("没写完，别急")
     },
     ...mapMutations(['updateDetailShow','updatePlayListIndex'])
   },

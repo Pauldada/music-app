@@ -17,7 +17,8 @@ export default createStore({
     }],
     playListIndex: 0, //默认下标为0
     isbtnShow:true, //播放暂停按钮显隐
-    detailShow: false, //歌曲详情页的显示
+    detailShow: false, //歌曲详情页的显隐
+    searchShow: false, //搜索页面的显隐
     lyricList: {},//歌词
     currentTime: 0,//当前时间
     duration: 0,//歌曲总时长
@@ -36,6 +37,9 @@ export default createStore({
     },
     updateDetailShow: function (state) {
       state.detailShow = !state.detailShow
+    },
+    updateSearchShow: function (state){
+      state.searchShow = !state.searchShow
     },
     updateLyricList: function (state, value) {
       state.lyricList = value

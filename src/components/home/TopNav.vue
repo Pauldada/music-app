@@ -21,16 +21,32 @@
     </div>
 
     <div class="topRight">
-      <svg class="icon" aria-hidden="true" @click="$router.push('/search')">
+      <svg class="icon" aria-hidden="true" @click="updateSearchShow">
         <use xlink:href="#icon-sousuo"></use>
       </svg>
     </div>
+
+    <van-popup
+        v-model:show="searchShow"
+        position="top"
+        :style="{
+          height: '90%',
+          width: '100%',
+        }"
+        round="round"
+    >
+      <SearchView
+      />
+    </van-popup>
 
   </div>
 
 </template>
 
 <script>
+import {mapMutations, mapState} from "vuex";
+import SearchView from "@/views/SearchView";
+
 export default {
   name: "TopNav",
   data(){
@@ -53,7 +69,14 @@ export default {
       }
       return path === '/find' && this.$route.path === '/';
 
-    }
+    },
+    ...mapMutations(['updateSearchShow'])
+  },
+  computed:{
+    ...mapState(['searchShow'])
+  },
+  components:{
+    SearchView
   }
 }
 </script>

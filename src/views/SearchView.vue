@@ -1,14 +1,14 @@
 <template>
   <div class="searchTop">
-    <svg class="icon" aria-hidden="true" @click="$router.go(-1)">
-      <use xlink:href="#icon-zuojiantou"></use>
-    </svg>
     <input
         type="text"
         placeholder="Please enter your search key"
         v-model="searchKey"
         @keydown.enter="enterKey"
     />
+    <svg class="icon" style="transform-origin: 50% 50%;transform: rotate(90deg);" aria-hidden="true" @click="backHome">
+      <use xlink:href="#icon-zuojiantou"></use>
+    </svg>
   </div>
 
   <div class="searchHistory">
@@ -51,6 +51,7 @@
 
 <script>
 import {getSearchMusic,getMusic} from "@/axios/api/API-Home";
+import {mapMutations} from "vuex";
 
 export default {
   name: "SearchView",
@@ -98,7 +99,13 @@ export default {
       item.al = res.data.songs[0].al
       this.$store.commit("pushPlayList", item)
       this.$store.commit("updatePlayListIndex", this.$store.state.playList.length - 1)
-    }
+    },
+    backHome: function () {
+      this.updateSearchShow();
+    },
+    ...mapMutations([
+        'updateSearchShow'
+    ])
   }
 }
 </script>
@@ -112,7 +119,8 @@ export default {
   align-items: center;
 
   input {
-    margin-left: 0.2rem;
+    margin-left: 0.1rem;
+    margin-right: 0.3rem;
     border: none;
     border-bottom: 1px solid #999;
     width: 90%;
@@ -136,13 +144,15 @@ export default {
     background-color: rgb(185, 169, 169);
     border-radius: 0.4rem;
     margin-left: 0.2rem;
+    margin-bottom: 0.1rem;
     display: inline-block;
   }
 
   .icon {
-    width: 0.3rem;
-    height: 0.3rem;
+    width: 0.4rem;
+    height: 0.4rem;
     position: absolute;
+    top: 0.2rem;
     right: 0.2rem;
   }
 }
@@ -150,6 +160,8 @@ export default {
 .itemList {
   width: 100%;
   padding: .2rem;
+  height: 85%;
+  overflow: scroll;
 
   .item {
     width: 100%;

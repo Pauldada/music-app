@@ -17,6 +17,21 @@ const routes = [
         name: 'search',
         component: ()=>import('../views/SearchView')
     },
+    {
+        path: '/mine',
+        name: 'mine',
+        component: ()=>import('../views/MineView')
+    },
+    {
+        path: '/mura',
+        name: 'mura',
+        component: ()=>import('../views/MuraView')
+    },
+    {
+        path: '/video',
+        name: 'video',
+        component: ()=>import('../views/VideoView')
+    },
 
 ]
 

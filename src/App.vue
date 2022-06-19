@@ -1,12 +1,15 @@
 <template>
+  <TopNav/>
   <router-view/>
   <MusicControl/>
 </template>
 
 <script>
+import TopNav from "@/components/home/TopNav";
 import MusicControl from "@/components/MusicControl";
 export default {
   components:{
+    TopNav,
     MusicControl
   }
 }

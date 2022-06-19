@@ -8,10 +8,16 @@
     </div>
 
     <div class="topContent">
-      <span>我的</span>
-      <span class="active">发现</span>
-      <span>云村</span>
-      <span>视频</span>
+      <ul>
+        <li
+            v-for="item in navList"
+            :key="item.name"
+            @click="navClick(item.path)"
+            :class="{active: isActive(item.path)}"
+        >
+          <span>{{item.name}}</span>
+        </li>
+      </ul>
     </div>
 
     <div class="topRight">
@@ -26,7 +32,29 @@
 
 <script>
 export default {
-  name: "TopNav"
+  name: "TopNav",
+  data(){
+    return{
+      navList:[
+        {path: '/mine',name:'我的'},
+        {path: '/',name:'发现'},
+        {path: '/mura',name:'云村'},
+        {path: '/video',name:'视频'},
+      ]
+    }
+  },
+  methods:{
+    navClick(path){
+      this.$router.push(path)
+    },
+    isActive(path) {
+      if (path === this.$route.path) {
+        return true;
+      }
+      return path === '/find' && this.$route.path === '/';
+
+    }
+  }
 }
 </script>
 
@@ -39,14 +67,16 @@ export default {
   justify-content: space-between;
   align-items: center;
 
-  .topContent {
-    width: 65%;
+  .topContent ul{
     height: 100%;
     display: flex;
     justify-content: space-around;
     // align-items: center;
     font-size: .36rem;
 
+    li{
+      margin: 5px 10px;
+    }
     .active {
       font-weight: 900;
     }

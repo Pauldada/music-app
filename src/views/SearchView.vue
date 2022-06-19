@@ -20,7 +20,7 @@
     >
       {{ item }}
     </span>
-    <svg class="icon" aria-hidden="true">
+    <svg class="icon" aria-hidden="true" @click="delHistory">
       <use xlink:href="#icon-shanchu"></use>
     </svg>
   </div>
@@ -47,9 +47,19 @@ export default {
   methods:{
     enterKey: async function (){
       this.keyWordList.unshift(this.searchKey);
+      //   去重
+      this.keyWordList = [...new Set(this.keyWordList)];
+      // 固定长度
+      if (this.keyWordList.length > 10) {
+        this.keyWordList.splice(this.keyWordList.length - 1, 1);
+      }
       localStorage.setItem("keyWordList", JSON.stringify(this.keyWordList));
       this.searchKey = "";
-    }
+    },
+    delHistory: function () {
+      localStorage.removeItem("keyWordList");
+      this.keyWordList = [];
+    },
   }
 }
 </script>

@@ -50,8 +50,13 @@ import MusicDetail from "@/components/MusicDetail";
 
 export default {
   name: "MusicControl",
+  data(){
+    return{
+      interval:0
+    }
+  },
   computed: {
-    ...mapState(["playList", "playListIndex", "isbtnShow","detailShow"])
+    ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow"])
   },
   updated() {
     this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
@@ -59,6 +64,7 @@ export default {
   mounted() {
     // console.log(this.$refs);
     this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
+    this.updateTime()
   },
   methods: {
 
@@ -67,15 +73,26 @@ export default {
       if (this.$refs.audio.paused) {
         this.$refs.audio.play();
         this.updateIsbtnShow(false);
+        this.updateTime()                     //调用函数进行传值
       } else {
         this.$refs.audio.pause();
         this.updateIsbtnShow(true);
+        clearInterval(this.interval)  //暂停清除定时器
       }
     },
+
+    updateTime: function () {
+      this.interval = setInterval(() => {
+        this.updateCurrentTime(this.$refs.audio.currentTime);
+      }, 1000);
+    },
+
     ...mapMutations([
       "updateIsbtnShow",
-      "updateDetailShow"
+      "updateDetailShow",
+      "updateCurrentTime"
     ]),
+
   },
   watch: {
     playListIndex: function () {
@@ -93,7 +110,7 @@ export default {
       }
     },
   },
-  components:{
+  components: {
     MusicDetail
   }
 }

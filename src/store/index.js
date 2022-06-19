@@ -19,6 +19,8 @@ export default createStore({
     isbtnShow:true, //播放暂停按钮显隐
     detailShow: false, //歌曲详情页的显示
     lyricList: {},//歌词
+    currentTime: 0,//当前时间
+    duration: 0,//歌曲总时长
   },
   getters: {
   },
@@ -28,7 +30,6 @@ export default createStore({
     },
     updatePlayList: function (state, value) {
       state.playList = value
-      // console.log(state.playList);
     },
     updatePlayListIndex: function (state, value) {
       state.playListIndex = value
@@ -38,6 +39,13 @@ export default createStore({
     },
     updateLyricList: function (state, value) {
       state.lyricList = value
+    },
+    updateCurrentTime: function (state, value) {
+      // console.log(this.state.currentTime)
+      state.currentTime = value
+    },
+    updateDuration: function (state, value) {
+      state.duration = value
     },
   },
   actions: {

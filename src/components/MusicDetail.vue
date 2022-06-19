@@ -72,7 +72,7 @@
       </div>
 
       <div class="footerContent">
-        <input type="range" class="range" min="0" step="0.05">
+        <input type="range" class="range" min="0" :max="duration" v-model="currentTime" step="0.05">
       </div>
 
       <div class="footer">
@@ -119,7 +119,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["lyricList","currentTime","playListIndex", "playList"]),
+    ...mapState(["lyricList","currentTime","playListIndex", "playList","duration"]),
     lyric: function () {
       let arr;
       if (this.lyricList.lyric) {
@@ -154,8 +154,9 @@ export default {
   mounted() {
     // console.log(this.musicList)
     // console.log(this.lyricList.lyric)
+    this.addDuration()
   },
-  props: ["musicList", 'isbtnShow', 'play'],
+  props: ["musicList", 'isbtnShow', 'play','addDuration'],
   methods: {
     backHome: function () {
       this.updateDetailShow();

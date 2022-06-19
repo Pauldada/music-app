@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <img :src="musicList.al.picUrl" alt="" class="bgimg" />
+    <img :src="musicList.al.picUrl" alt="" class="bgimg"/>
 
     <div class="detailTop">
       <div class="detailTopLeft">
@@ -8,7 +8,7 @@
           <use xlink:href="#icon-zuojiantou"></use>
         </svg>
         <div class="leftMarquee">
-          <Vue3Marquee style="color:#fff;">{{musicList.al.name}}</Vue3Marquee>
+          <Vue3Marquee style="color:#fff;">{{ musicList.al.name }}</Vue3Marquee>
           <span v-for="item in musicList.ar" :key="item">
           {{ item.name }} &nbsp
         </span>
@@ -31,7 +31,7 @@
           class="img_point"
           :class="{img_point_active: !isbtnShow}"
       />
-      <img src="@/assets/music-cd.png" alt="" class="img_cd" />
+      <img src="@/assets/music-cd.png" alt="" class="img_cd"/>
       <img
           :src="musicList.al.picUrl"
           alt=""
@@ -40,17 +40,13 @@
       />
     </div>
 
-    <div class="musicLyric" ref="musicLyric">{{lyricList.lyric}}
-<!--      <p-->
-<!--          v-for="item in lyric"-->
-<!--          :key="item"-->
-<!--          :class="{-->
-<!--        active:-->
-<!--          currentTime * 1000 >= item.time && currentTime * 1000 < item.pre,-->
-<!--      }"-->
-<!--      >-->
-<!--        {{ item.lrc }}-->
-<!--      </p>-->
+    <div class="musicLyric" ref="musicLyric">
+            <p
+                v-for="item in lyric"
+                :key="item"
+            >
+              {{ item.lrc }}
+            </p>
     </div>
 
     <div class="detailFooter">
@@ -82,7 +78,7 @@
           <use xlink:href="#icon-xunhuan"></use>
         </svg>
 
-        <svg class="icon" aria-hidden="true" @click="goPlay(-1)">
+        <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-shangyishoushangyige"></use>
         </svg>
 
@@ -94,7 +90,7 @@
           <use xlink:href="#icon-zanting"></use>
         </svg>
 
-        <svg class="icon" aria-hidden="true" @click="goPlay(1)">
+        <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-xiayigexiayishou"></use>
         </svg>
 
@@ -112,24 +108,56 @@
 import {Vue3Marquee} from "vue3-marquee";
 import "vue3-marquee/dist/style.css"
 import {mapMutations, mapState} from "vuex";
+
 export default {
   name: "MusicDetail",
-  data(){
-    return{
-      isLyricShow:false
+  data() {
+    return {
+      isLyricShow: false
     }
   },
-  computed:{
-    ...mapState(['lyricList'])
+  computed: {
+    ...mapState(['lyricList']),
+    lyric: function () {
+      let arr;
+      if (this.lyricList.lyric) {
+        arr = this.lyricList.lyric.split(/[(\r\n)\r\n]+/).map((item, i) => {
+          let min = item.slice(1, 3);
+          let sec = item.slice(4, 6);
+          let mill = item.slice(7, 10);
+          let lrc = item.slice(11, item.length);
+          let time =
+              parseInt(min) * 60 * 1000 + parseInt(sec) * 1000 + parseInt(mill);
+          if (isNaN(Number(mill))) {
+            mill = item.slice(7, 9);
+            lrc = item.slice(10, item.length);
+            time =
+                parseInt(min) * 60 * 1000 + parseInt(sec) * 1000 + parseInt(mill);
+          }
+          // console.log(min,sec,Number(mill),lrc);
+          return {min, sec, mill, lrc, time};
+        });
+        arr.forEach((item, i) => {
+          if (i === arr.length - 1 || isNaN(arr[i + 1].time)) {
+            item.pre = 100000;
+          } else {
+            item.pre = arr[i + 1].time;
+          }
+        });
+      }
+      // console.log(arr);
+      return arr;
+    },
   },
   mounted() {
-    console.log(this.musicList)
+    // console.log(this.musicList)
+    // console.log(this.lyricList.lyric)
   },
-  props:["musicList",'isbtnShow','play'],
-  methods:{
+  props: ["musicList", 'isbtnShow', 'play'],
+  methods: {
     ...mapMutations(['updateDetailShow'])
   },
-  components:{
+  components: {
     Vue3Marquee
   }
 }
@@ -143,6 +171,7 @@ export default {
   z-index: -1;
   filter: blur(70px);
 }
+
 .detailTop {
   width: 100%;
   height: 1rem;
@@ -151,16 +180,20 @@ export default {
   justify-content: space-between;
   align-items: center;
   fill: #fff;
+
   .detailTopLeft {
     display: flex;
     align-items: center;
+
     .leftMarquee {
       width: 3rem;
       height: 100%;
       margin-left: 0.4rem;
+
       span {
         color: #999;
       }
+
       .icon {
         width: 0.3rem;
         height: 0.3rem;
@@ -169,6 +202,7 @@ export default {
     }
   }
 }
+
 .detailContent {
   width: 100%;
   height: 9rem;
@@ -176,6 +210,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
+
   .img_point {
     width: 2rem;
     height: 3rem;
@@ -185,6 +220,7 @@ export default {
     transform: rotate(-24deg);
     transition: all 0.5s;
   }
+
   .img_point_active {
     width: 2rem;
     height: 3rem;
@@ -211,12 +247,15 @@ export default {
     bottom: 3.14rem;
     animation: rotate_ar 20s linear infinite;
   }
+
   .img_ar_active {
     animation-play-state: running;
   }
+
   .img_ar_paused {
     animation-play-state: paused;
   }
+
   @keyframes rotate_ar {
     0% {
       transform: rotateZ(0deg);
@@ -236,15 +275,18 @@ export default {
   align-items: center;
   margin-top: 0.2rem;
   overflow: scroll;
+
   p {
     color: rgb(190, 181, 181);
     margin-bottom: 0.3rem;
   }
+
   .active {
     color: #fff;
     font-size: 0.5rem;
   }
 }
+
 .detailFooter {
   width: 100%;
   height: 3rem;
@@ -253,35 +295,42 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   .footerTop {
     width: 100%;
     height: 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     .icon {
       width: 0.36rem;
       height: 0.36rem;
       fill: rgb(245, 234, 234);
     }
+
     .icon {
       width: 0.6rem;
       height: 0.6rem;
     }
   }
+
   .range {
     width: 100%;
     height: 0.06rem;
   }
+
   .footer {
     width: 100%;
     height: 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     .icon {
       fill: rgb(245, 234, 234);
     }
+
     .bofang {
       width: 1rem;
       height: 1rem;

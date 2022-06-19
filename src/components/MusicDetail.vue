@@ -44,6 +44,7 @@
             <p
                 v-for="item in lyric"
                 :key="item"
+                :class="{active:currentTime * 1000 >= item.time && currentTime * 1000 < item.pre}"
             >
               {{ item.lrc }}
             </p>
@@ -117,7 +118,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['lyricList']),
+    ...mapState(["lyricList","currentTime"]),
     lyric: function () {
       let arr;
       if (this.lyricList.lyric) {
@@ -282,8 +283,8 @@ export default {
   }
 
   .active {
-    color: #fff;
-    font-size: 0.5rem;
+    color: #383838;
+    font-size: 0.4rem;
   }
 }
 

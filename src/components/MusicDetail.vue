@@ -158,6 +158,27 @@ export default {
   methods: {
     ...mapMutations(['updateDetailShow'])
   },
+  watch: {
+    currentTime: function (newValue) {
+      let p = document.querySelector("p.active");
+      // console.log([p]);
+      if (p) {
+        if (p.offsetTop > 250) {
+          this.$refs.musicLyric.scrollTop = p.offsetTop - 250;
+        }
+      }
+      if(newValue===this.duration){
+
+        if(this.playListIndex===this.playList.length-1){
+          this.updatePlayListIndex(0);
+          this.play()
+        }else{
+          this.updatePlayListIndex(this.playListIndex+1);
+        }
+      }
+      // console.log([this.$refs.musicLyric])
+    },
+  },
   components: {
     Vue3Marquee
   }

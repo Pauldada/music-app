@@ -28,7 +28,7 @@
 
   <div class="itemList">
     <div class="item" v-for="(item, i) in searchList" :key="i">
-      <div class="itemLeft">
+      <div class="itemLeft" @click="updateIndex(item)">
         <span class="leftSpan">{{ i + 1 }}</span>
         <div>
           <p>{{ item.name }}</p>
@@ -54,11 +54,11 @@ import {getSearchMusic} from "@/axios/api/API-Home";
 
 export default {
   name: "SearchView",
-  data(){
-    return{
-      keyWordList:[],
-      searchKey:"",
-      searchList:[]
+  data() {
+    return {
+      keyWordList: [],
+      searchKey: "",
+      searchList: []
     }
   },
   mounted() {
@@ -68,8 +68,8 @@ export default {
       this.keyWordList = [];
     }
   },
-  methods:{
-    enterKey: async function (){
+  methods: {
+    enterKey: async function () {
       this.keyWordList.unshift(this.searchKey);
       //   去重
       this.keyWordList = [...new Set(this.keyWordList)];
@@ -92,6 +92,13 @@ export default {
       // console.log(res);
       this.searchList = res.data.result.songs;
     },
+    updateIndex: function (item) {
+      console.log(item)
+      item.al = item.album
+      item.al.picUrl = item.album.artist.img1v1Url
+      this.$store.commit("pushPlayList", item)
+      this.$store.commit("updatePlayListIndex", this.$store.state.playList.length - 1)
+    }
   }
 }
 </script>
@@ -103,6 +110,7 @@ export default {
   padding: 0 0.2rem;
   display: flex;
   align-items: center;
+
   input {
     margin-left: 0.2rem;
     border: none;
@@ -111,13 +119,16 @@ export default {
     padding: 0.1rem;
   }
 }
+
 .searchHistory {
   width: 100%;
   padding: 0.2rem;
   position: relative;
+
   .searchSpan {
     font-weight: 700;
   }
+
   .spanKey {
     padding: 0.05rem 0.2rem;
     background-color: rgb(185, 169, 169);
@@ -125,6 +136,7 @@ export default {
     margin-left: 0.2rem;
     display: inline-block;
   }
+
   .icon {
     width: 0.3rem;
     height: 0.3rem;
@@ -132,25 +144,30 @@ export default {
     right: 0.2rem;
   }
 }
+
 .itemList {
   width: 100%;
   padding: .2rem;
+
   .item {
     width: 100%;
     height: 1.4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .itemLeft {
       width: 85%;
       height: 100%;
       display: flex;
       align-items: center;
+
       .leftSpan {
         display: inline-block;
         width: 0.2rem;
         text-align: center;
       }
+
       div {
         p {
           width: 4.54rem;
@@ -160,29 +177,35 @@ export default {
           white-space: nowrap;
           font-weight: 700;
         }
-        span{
+
+        span {
           font-weight: 400;
           font-size: .24rem;
           color: #999;
         }
+
         margin-left: 0.3rem;
       }
     }
-    .itemRight{
+
+    .itemRight {
       width: 20%;
       height: 100%;
       display: flex;
       // justify-content: space-between;
       align-items: center;
       position: relative;
-      .icon{
+
+      .icon {
         fill: #999;
       }
-      .bofang{
+
+      .bofang {
         position: absolute;
         left: 0;
       }
-      .liebiao{
+
+      .liebiao {
         position: absolute;
         right: 0;
       }

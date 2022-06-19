@@ -47,6 +47,9 @@ export default createStore({
     updateDuration: function (state, value) {
       state.duration = value
     },
+    pushPlayList: function (state, value) {
+      state.playList.push(value)
+    },
   },
   actions: {
     getLyric: async function (context, value) {

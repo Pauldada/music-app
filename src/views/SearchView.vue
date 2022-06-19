@@ -130,6 +130,8 @@ export default {
   }
 
   .spanKey {
+    height: 24px;
+    line-height: 20px;
     padding: 0.05rem 0.2rem;
     background-color: rgb(185, 169, 169);
     border-radius: 0.4rem;

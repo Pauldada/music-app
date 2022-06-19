@@ -80,7 +80,7 @@
           <use xlink:href="#icon-xunhuan"></use>
         </svg>
 
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="goPlay(-1)">
           <use xlink:href="#icon-shangyishoushangyige"></use>
         </svg>
 
@@ -92,7 +92,7 @@
           <use xlink:href="#icon-zanting"></use>
         </svg>
 
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="goPlay(1)">
           <use xlink:href="#icon-xiayigexiayishou"></use>
         </svg>
 
@@ -119,7 +119,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["lyricList","currentTime"]),
+    ...mapState(["lyricList","currentTime","playListIndex", "playList"]),
     lyric: function () {
       let arr;
       if (this.lyricList.lyric) {
@@ -163,7 +163,16 @@ export default {
         this.isLyricShow = false;
       },500);
     },
-    ...mapMutations(['updateDetailShow'])
+    goPlay:function (num){
+      let index = this.playListIndex + num;
+      if (index < 0){
+        index = this.playList.length - 1;
+      }else if (index === this.playList.length){
+        index =0
+      }
+      this.updatePlayListIndex(index)
+    },
+    ...mapMutations(['updateDetailShow','updatePlayListIndex'])
   },
   watch: {
     currentTime: function (newValue) {

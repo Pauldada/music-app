@@ -21,10 +21,17 @@ export function getSearchMusic(data){
         url:`/search?keywords=${data}`
     })
 }
-
+//获取歌曲详情
 export function getMusic(data){
     return service({
         method:"GET",
         url:`/song/detail?ids=${data}`
+    })
+}
+//手机号登录
+export function getPhoneLogin(data){
+    return service({
+        method:"GET",
+        url:`/login/cellphone?phone=${data.phone}&password=${data.password}`
     })
 }

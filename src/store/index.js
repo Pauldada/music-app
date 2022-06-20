@@ -1,5 +1,6 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
 import {getMusicLyric} from "@/axios/api/API-ItemMusic";
+import {getPhoneLogin} from "@/axios/api/API-Home";
 
 export default createStore({
   state: {
@@ -64,6 +65,12 @@ export default createStore({
       // console.log(res);
       context.commit("updateLyricList", res.data.lrc)
     },
+    getLogin: async function (context, value) {
+      let res;
+      res = await getPhoneLogin(value);
+      // console.log(res);
+      return res
+    }
   },
   modules: {
   }

@@ -23,7 +23,18 @@
 
 <script>
 export default {
-  name: "LoginView"
+  name: "LoginView",
+  data(){
+    return{
+      phone:'',
+      password:''
+    }
+  },
+  methods:{
+    Login:function (){
+      this.$store.dispatch('getLogin',{phone:this.phone,password:this.password})
+    }
+  }
 }
 </script>
 

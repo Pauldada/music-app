@@ -49,3 +49,10 @@ export function getHotSong(data){
         url:`/top/song?type=${data}`
     })
 }
+//获取用户歌单
+export function getUserSong(data){
+    return service({
+        method:"GET",
+        url:`/user/playlist?uid=${data}`
+    })
+}

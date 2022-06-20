@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <img src="../src/assets/background.png" alt="" class="bgimg">
+    <img src="../src/assets/background1.png" alt="" class="bgimg">
     <TopNav v-show="$store.state.isTopNav"/>
     <router-view/>
     <MusicControl v-show="$store.state.isControl"/>
@@ -20,8 +20,8 @@ export default {
 
 <style lang="less">
 .bgimg {
-  width: 100%;
   height: 100%;
+  width: auto;
   position: absolute;
   z-index: -1;
   filter: blur(2px);

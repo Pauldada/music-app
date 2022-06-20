@@ -36,7 +36,7 @@ export default {
 <style lang="less" scoped>
 .listIcon{
   width: 100%;
-  height: 2rem;
+  height: 1.5rem;
   margin-top: .2rem;
   display: flex;
   justify-content: space-around;

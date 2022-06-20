@@ -22,6 +22,7 @@ export default createStore({
     lyricList: {},//歌词
     currentTime: 0,//当前时间
     duration: 0,//歌曲总时长
+    isLogin:false //登录状态
   },
   getters: {
   },

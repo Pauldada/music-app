@@ -48,7 +48,8 @@ export default {
     onMounted(async ()=>{
       let res = await getHotSong(0)  // 获取歌单所有曲目
       state.itemlist = res.data.data
-      console.log(state.itemlist)
+      // console.log(state.itemlist)
+      state.itemlist = state.itemlist.slice(0,20)
     })
     return {state}
   },

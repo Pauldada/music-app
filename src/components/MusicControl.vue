@@ -141,7 +141,7 @@ export default {
     height: 100%;
     display: flex;
     justify-content: space-around;
-    align-items: end;
+    align-items: flex-end;
     color: white;
 
     img {
@@ -157,7 +157,7 @@ export default {
     height: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
     color: white;
 
     .icon {

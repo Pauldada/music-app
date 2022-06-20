@@ -22,7 +22,7 @@ const routes = [
         path: '/mine',
         name: 'mine',
         beforeEnter:(to,from,next)=>{
-            if (store.state.isLogin){
+            if (store.state.isLogin || store.state.token === localStorage.getItem('token')){
                 next()
             }else {
                 next('/login')

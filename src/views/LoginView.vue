@@ -35,6 +35,7 @@ export default {
       let res =await this.$store.dispatch('getLogin',{phone:this.phone,password:this.password})
       console.log(res)
       if (res.data.code === 200){
+        this.$store.commit('updateToken',res.data.token)
         this.$store.commit('updateIsLogin',true)
         await this.$router.push('/mine')
       }else {

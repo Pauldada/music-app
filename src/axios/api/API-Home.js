@@ -35,3 +35,11 @@ export function getPhoneLogin(data){
         url:`/login/cellphone?phone=${data.phone}&password=${data.password}`
     })
 }
+//获取用户详情
+export function getLoginUser(data){
+    return service({
+        method:"GET",
+        url:`/user/detail?uid=${data}`
+    })
+}
+

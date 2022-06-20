@@ -27,6 +27,7 @@ export default createStore({
     isTopNav:true, //顶部导航栏的显隐
     isControl:true, //底部控制组件的显隐
     token: "", //Token
+    user:{} //用户信息
   },
   getters: {
   },
@@ -66,6 +67,9 @@ export default createStore({
       state.token = value
       localStorage.setItem('token', state.token)
     },
+    updateUser: function (state, value) {
+      state.user = value
+    }
   },
   actions: {
     getLyric: async function (context, value) {

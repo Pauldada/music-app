@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import {getLoginUser} from "@/axios/api/API-Home";
+
 export default {
   name: "LoginView",
   data(){
@@ -32,11 +34,13 @@ export default {
   },
   methods:{
     Login:async function (){
-      let res =await this.$store.dispatch('getLogin',{phone:this.phone,password:this.password})
-      console.log(res)
-      if (res.data.code === 200){
-        this.$store.commit('updateToken',res.data.token)
+      let res1 =await this.$store.dispatch('getLogin',{phone:this.phone,password:this.password})
+      // console.log(res1)
+      if (res1.data.code === 200){
+        this.$store.commit('updateToken',res1.data.token)
         this.$store.commit('updateIsLogin',true)
+        let res2 = await getLoginUser(res1.data.account.id)
+        this.$store.commit('updateUser',res2)
         await this.$router.push('/mine')
       }else {
         alert("手机号或密码错误！")

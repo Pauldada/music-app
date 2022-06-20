@@ -58,6 +58,9 @@ export default createStore({
     pushPlayList: function (state, value) {
       state.playList.push(value)
     },
+    updateIsLogin: function (state, value) {
+      state.isLogin = true
+    },
   },
   actions: {
     getLyric: async function (context, value) {

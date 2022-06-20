@@ -31,8 +31,16 @@ export default {
     }
   },
   methods:{
-    Login:function (){
-      this.$store.dispatch('getLogin',{phone:this.phone,password:this.password})
+    Login:async function (){
+      let res =await this.$store.dispatch('getLogin',{phone:this.phone,password:this.password})
+      console.log(res)
+      if (res.data.code === 200){
+        this.$store.commit('updateIsLogin',true)
+        await this.$router.push('/mine')
+      }else {
+        alert("手机号或密码错误！")
+        this.password=''
+      }
     }
   }
 }

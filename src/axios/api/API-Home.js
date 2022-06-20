@@ -56,3 +56,10 @@ export function getUserSong(data){
         url:`/user/playlist?uid=${data}`
     })
 }
+//获取推荐视频/video/timeline/recommend?offset=10
+export function getVideoList(){
+    return service({
+        method:"GET",
+        url:`/video/timeline/recommend?offset=10`
+    })
+}

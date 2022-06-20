@@ -42,4 +42,10 @@ export function getLoginUser(data){
         url:`/user/detail?uid=${data}`
     })
 }
-
+//获取新歌
+export function getHotSong(data){
+    return service({
+        method:"GET",
+        url:`/top/song?type=${data}`
+    })
+}

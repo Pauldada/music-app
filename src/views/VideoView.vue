@@ -10,7 +10,12 @@
           <img :src="item.data.creator.avatarUrl" alt="" class="smimg">
         </div>
         <div class="creator-right">
-          {{item.data.creator.nickname}}
+          <div class="text">
+            {{item.data.creator.nickname}}
+          </div>
+          <div class="ten">
+            ...
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +44,7 @@ export default {
 
 <style scoped>
 .video{
-  width: 90%;
+  width: 96%;
   background-color: black;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -48,7 +53,7 @@ export default {
   overflow: hidden;
 }
 .video-text{
-  width: 90%;
+  width: 96%;
   background-color: black;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
@@ -60,6 +65,7 @@ export default {
 .video-creator{
   margin-top: 10px;
   padding-left: 6px;
+  color: #898989;
   display: flex;
 }
 .smimg{
@@ -68,8 +74,18 @@ export default {
   border-radius: 50px;
 }
 .creator-right{
+  width: 86%;
   margin-left: 12px;
   margin-top: 7px;
   font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.ten{
+  height: 100%;
+  line-height: 100%;
+  padding: 0;
+  right: 0;
+  font-size: 25px;
 }
 </style>

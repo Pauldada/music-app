@@ -54,8 +54,7 @@ export default {
       navList:[
         {path: '/mine',name:'我的'},
         {path: '/',name:'发现'},
-        {path: '/mura',name:'云村'},
-        {path: '/video',name:'视频'},
+        {path: '/video',name:'云村'},
       ]
     }
   },

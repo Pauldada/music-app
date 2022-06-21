@@ -31,11 +31,6 @@ const routes = [
         component: ()=>import('../views/MineView')
     },
     {
-        path: '/mura',
-        name: 'mura',
-        component: ()=>import('../views/MuraView')
-    },
-    {
         path: '/video',
         name: 'video',
         component: ()=>import('../views/VideoView')

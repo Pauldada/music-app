@@ -26,6 +26,7 @@ export default createStore({
     isLogin:false, //登录状态
     isTopNav:true, //顶部导航栏的显隐
     isControl:true, //底部控制组件的显隐
+    id:"",
     token: "", //Token
     user:{} //用户信息
   },
@@ -61,7 +62,7 @@ export default createStore({
       state.playList.push(value)
     },
     updateIsLogin: function (state, value) {
-      state.isLogin = true
+      state.isLogin = value
     },
     updateToken: function (state, value) {
       state.token = value
@@ -69,6 +70,9 @@ export default createStore({
     },
     updateUser: function (state, value) {
       state.user = value
+    },
+    updateId:function (state,value){
+      state.id = value
     }
   },
   actions: {

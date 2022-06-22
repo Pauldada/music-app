@@ -64,7 +64,7 @@ export function getVideoList(){
     })
 }
 //获取登录状态
-export function getVideoList(){
+export function getLoginYN(){
     return service({
         method:"GET",
         url:`/login/status`

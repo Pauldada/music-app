@@ -43,6 +43,7 @@ export default {
       if (res1.data.code === 200){
         this.$store.commit('updateToken',res1.data.token)
         this.$store.commit('updateIsLogin',true)
+        this.$store.commit('updateId',res1.data.account.id)
         let res2 = await getLoginUser(res1.data.account.id)
         this.$store.commit('updateUser',res2)
         await this.$router.push('/mine')

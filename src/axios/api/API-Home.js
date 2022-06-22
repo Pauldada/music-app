@@ -63,3 +63,10 @@ export function getVideoList(){
         url:`/video/timeline/recommend?offset=10`
     })
 }
+//获取登录状态
+export function getVideoList(){
+    return service({
+        method:"GET",
+        url:`/login/status`
+    })
+}

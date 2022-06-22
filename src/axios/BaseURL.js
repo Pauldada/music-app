@@ -5,5 +5,17 @@ let service = axios.create({
     // baseURL:"https://netease-cloud-music-api-two-gray.vercel.app/",
     timeout:10000
 })
+service.interceptors.request.use(function (config) {
+    // 在发送请求之前做些什么
+    if(!config.token) {
+        config.token = localStorage.getItem('token');
+    }
+    // console.log('interceptors',config)
+    return config;
+}, function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+});
+
 
 export default service

@@ -2,7 +2,7 @@
   <div class="topNav">
 
     <div class="topleft">
-      <svg class="icon" aria-hidden="true">
+      <svg class="icon" aria-hidden="true" @click="logout">
         <use xlink:href="#icon-31liebiao"></use>
       </svg>
     </div>
@@ -46,6 +46,7 @@
 <script>
 import {mapMutations, mapState} from "vuex";
 import SearchView from "@/views/SearchView";
+import {Logout} from "@/axios/api/API-Home";
 
 export default {
   name: "TopNav",
@@ -68,6 +69,9 @@ export default {
       }
       return path === '/find' && this.$route.path === '/';
 
+    },
+    logout(){
+      Logout()
     },
     ...mapMutations(['updateSearchShow'])
   },

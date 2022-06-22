@@ -63,10 +63,31 @@ export function getVideoList(){
         url:`/video/timeline/recommend?offset=10`
     })
 }
-//获取登录状态
-export function getLoginYN(){
+//注销
+export function Logout(){
     return service({
         method:"GET",
-        url:`/login/status`
+        url:`/login/logout`
+    })
+}
+//获取登录Key
+export function getCodeKey(){
+    return service({
+        method:"GET",
+        url:`/login/qr/key?timerstamp=${Date.now()}`
+    })
+}
+//获取二维码
+export function getCodeImg(data){
+    return service({
+        method:"GET",
+        url:`/login/qr/create?key=${data}&qrimg=true&timerstamp=${Date.now()}`
+    })
+}
+//获取二维码状态
+export function getCodeImgStatus(data){
+    return service({
+        method:"GET",
+        url:`/login/qr/check?key=${data}`
     })
 }

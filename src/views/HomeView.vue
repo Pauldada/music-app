@@ -23,17 +23,19 @@ export default {
     TopSwipe,ListIcon,ListMusic,ListMusicHot
   },
   mounted() {
-    axios.get('https://netease-cloud-music-api-two-gray.vercel.app/login/status').then((res)=>{
+    axios.get('http://pauldada.plus:3000/login/status').then((res)=>{
       this.state.isLoginYN = res.data.data.account;
       console.log('Account', this.state.isLoginYN)
       if ( this.state.isLoginYN == null){
         console.log('you need login!!!!')
         this.updateIsLogin(false)
-        let res = getLoginUser(this.id)
-        this.$store.commit('updateUser',res)
       } else if ( this.state.isLoginYN.status === 0){
         console.log('login!!!!')
+        this.updateId(this.state.isLoginYN.id)
+        console.log('ID',this.id)
         this.updateIsLogin(true)
+        let res = getLoginUser(this.id)
+        this.$store.commit('updateUser',res)
       } else if ( this.state.isLoginYN.status === -10){
         console.log('Account danger','you need login!!!!')
         this.updateIsLogin(false)
@@ -54,7 +56,7 @@ export default {
     return{state}
   },
   methods:{
-    ...mapMutations(['updateIsLogin'])
+    ...mapMutations(['updateIsLogin','updateId'])
   }
 }
 </script>

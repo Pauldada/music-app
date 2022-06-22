@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "TopMine",
@@ -14,7 +14,10 @@ export default {
     ...mapState(["user"])
   },
   mounted() {
-    console.log(this.user)
+    this.updateUser(this.user)
+  },
+  methods:{
+    ...mapMutations(['updateUser'])
   }
 }
 </script>

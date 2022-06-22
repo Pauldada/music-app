@@ -29,12 +29,16 @@ export default {
       if ( this.state.isLoginYN == null){
         console.log('you need login!!!!')
         this.updateIsLogin(false)
-      } else if ( this.state.isLoginYN.status === 0){
-        console.log('login!!!!')
+      } else {
+        console.log('Vuex-ID',this.id)
+        console.log('Now-ID',this.state.isLoginYN.id)
         this.updateId(this.state.isLoginYN.id)
-        console.log('ID',this.id)
         this.updateIsLogin(true)
-        let res = getLoginUser(this.id)
+      }
+      if ( this.state.isLoginYN.status === 0){
+        console.log('login!!!!')
+        let res = getLoginUser(this.state.isLoginYN.id)
+        console.log('user',res)
         this.$store.commit('updateUser',res)
       } else if ( this.state.isLoginYN.status === -10){
         console.log('Account danger','you need login!!!!')

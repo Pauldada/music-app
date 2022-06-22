@@ -21,19 +21,30 @@
         />
       </div>
       <button class="btn" @click="Login">登录</button>
+      <button class="btn" @click="ImgShow=true">二维码登录</button>
     </div>
+
+    <van-popup
+        v-model:show="ImgShow"
+        position="top"
+        :style="{ height: '50%', width: '100%' }"
+    >
+      <ImgCode/>
+    </van-popup>
+
   </div>
 </template>
 
 <script>
 import {getLoginUser, getPhoneLogin} from "@/axios/api/API-Home";
-
+import ImgCode from "@/components/login/ImgCode";
 export default {
   name: "LoginView",
   data(){
     return{
       phone:'',
-      password:''
+      password:'',
+      ImgShow:false
     }
   },
   methods:{
@@ -56,6 +67,9 @@ export default {
         this.password=''
       }
     }
+  },
+  components:{
+    ImgCode
   }
 }
 </script>

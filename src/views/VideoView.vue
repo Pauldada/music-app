@@ -35,7 +35,7 @@ export default {
     onMounted(async ()=>{
       let res = await getVideoList()
       state.videoList = res.data.datas
-      console.log(state.videoList)
+      // console.log(state.videoList)
     })
     return{state}
   }

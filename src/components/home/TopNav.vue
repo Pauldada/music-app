@@ -88,7 +88,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(56, 56, 56, 0.15);
+  background: rgba(255, 192, 203,0.9);
   border-radius: 16px;
 
   .topContent ul{

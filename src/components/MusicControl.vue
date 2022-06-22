@@ -126,7 +126,7 @@ export default {
 .musicControl {
   width: 100%;
   height: 1.1rem;
-  background-color: rgba(141, 134, 165, 0.75);
+  background-color: rgba(255, 192, 203,0.9);
   position: fixed;
   bottom: 0;
   border-top: 1px solid #999;

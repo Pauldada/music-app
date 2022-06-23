@@ -3,7 +3,7 @@
 
     <div class="footerLeft" @click="updateDetailShow">
       <img :src="playList[playListIndex].al.picUrl" alt=""/>
-      <div>
+      <div class="footerLeftText">
         <p>{{ playList[playListIndex].name }}</p>
         <span>横滑切换上下首哦</span>
       </div>
@@ -143,6 +143,15 @@ export default {
     justify-content: space-around;
     align-items: flex-end;
     color: white;
+
+    .footerLeftText{
+      height: 120%;
+      width: 100%;
+      margin-left: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 
     img {
       width: 1.2rem;

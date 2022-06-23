@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img src="../../src/assets/background1.png" alt="" class="bgimg">
     <TopSwipe/>
     <ListIcon/>
     <ListMusic/>

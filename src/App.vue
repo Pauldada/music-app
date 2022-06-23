@@ -1,6 +1,5 @@
 <template>
   <div class="app">
-    <img src="../src/assets/background1.png" alt="" class="bgimg">
     <TopNav v-show="$store.state.isTopNav"/>
     <router-view/>
     <MusicControl v-show="$store.state.isControl"/>

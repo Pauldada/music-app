@@ -9,20 +9,52 @@
 </template>
 
 <script>
-import {getCodeImg, getCodeKey} from "@/axios/api/API-Home";
+import {getCodeImg, getCodeImgStatus, getCodeKey, getLoginStatus} from "@/axios/api/API-Home";
 import {onMounted, reactive} from "vue";
+import {mapMutations} from "vuex";
 
 export default {
   name: "ImgCode",
+  methods:{
+    ...mapMutations(['updateIsLogin'])
+  },
   setup(){
     const state = reactive({
       res:''
     })
     onMounted(async ()=>{
+      let timer
+      let timestamp = Date.now()
+      const cookie = localStorage.getItem('cookie')
+      // console.log(cookie)
+      const result = await getLoginStatus(cookie)
+      // console.log(result.data,null,2)
       let code = await getCodeKey()
-      let res = await getCodeImg(code.data.data.unikey)
+      const key = code.data.data.unikey
+      let res = await getCodeImg(key)
       document.querySelector('#qrImg').src = res.data.data.qrimg
-      console.log(res)
+      // console.log(key)
+
+      timer = setInterval(async ()=>{
+        const statusRes = await getCodeImgStatus(key)
+        // console.log(statusRes.data)
+        if (statusRes.code === 800) {
+          alert('二维码已过期,请重新获取')
+          this.updateIsLogin(true)
+          clearInterval(timer)
+        }
+        if (statusRes.code === 803) {
+          // 这一步会返回cookie
+          clearInterval(timer)
+          alert('授权登录成功')
+          this.updateIsLogin(true)
+
+
+
+          await this.getLoginStatus(statusRes.cookie)
+          localStorage.setItem('cookie', statusRes.cookie)
+        }
+      },3000)
     })
   }
 }

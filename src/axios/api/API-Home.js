@@ -88,6 +88,16 @@ export function getCodeImg(data){
 export function getCodeImgStatus(data){
     return service({
         method:"GET",
-        url:`/login/qr/check?key=${data}`
+        url:`/login/qr/check?key=${data}&timerstamp=${Date.now()}`
+    })
+}
+//获取登录状态
+export function getLoginStatus(cookie){
+    return service({
+        method:"GET",
+        url:`/login/status?timerstamp=${Date.now()}`,
+        data:{
+            cookie
+        }
     })
 }

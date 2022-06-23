@@ -2,7 +2,7 @@
   <div class="login">
     <div class="loginTop">欢迎登录</div>
     <div class="loginContent">
-      <div class="phone">
+      <div class="phone" v-show="!CapShow">
         <input
             type="text"
             name="phone"
@@ -11,7 +11,7 @@
             placeholder="请输入手机号码"
         />
       </div>
-      <div class="password">
+      <div class="password" v-show="!CapShow">
         <input
             type="password"
             name="password"
@@ -20,8 +20,29 @@
             placeholder="请输入密码"
         />
       </div>
-      <button class="btn" @click="Login">登录</button>
-      <button class="btn" @click="ImgShow=true">二维码登录</button>
+      <div class="phone" v-show="CapShow">
+        <input
+            type="text"
+            name="phone"
+            v-model="phone"
+            class="phone-content"
+            placeholder="请输入手机号码"
+        />
+        <a>获取验证码</a>
+      </div>
+      <div class="phone" v-show="CapShow">
+        <input
+            type="text"
+            name="captcha"
+            class="phone-content"
+            v-model="captcha"
+            placeholder="请输入验证码"
+        />
+      </div>
+      <button class="btn-cap" @click="CapShow=true" v-show="!CapShow">短信登陆</button>
+      <button class="btn-cap" @click="CapShow=false" v-show="CapShow">手机登陆</button>
+      <button class="btn-log" @click="Login">登录</button>
+      <button class="btn-img" @click="ImgShow=true">二维码登录</button>
     </div>
 
     <van-popup
@@ -45,7 +66,9 @@ export default {
     return{
       phone:'',
       password:'',
-      ImgShow:false
+      captcha:'',
+      ImgShow:false,
+      CapShow:false
     }
   },
   methods:{
@@ -106,6 +129,7 @@ export default {
       border-radius: 40px;
       .phone-content,
       .password-content{
+        width: 50%;
         height: 100%;
         margin-left: 30px;
         border: none;
@@ -113,7 +137,17 @@ export default {
       }
     }
 
-    .btn{
+    .btn-cap{
+      width: 3rem;
+      height: .8rem;
+      border: 0.06rem solid #6be7a3;
+      background-color: #6be7a3;
+      color: white;
+      font-size: 18px;
+      border-radius: 20px;
+      margin: 2px;
+    }
+    .btn-log{
       width: 3rem;
       height: .8rem;
       border: 0.06rem solid #ffc0cb;
@@ -121,6 +155,17 @@ export default {
       color: white;
       font-size: 18px;
       border-radius: 20px;
+      margin: 2px;
+    }
+    .btn-img{
+      width: 3rem;
+      height: .8rem;
+      border: 0.06rem solid #8fe0e0;
+      background-color: #8fe0e0;
+      color: white;
+      font-size: 18px;
+      border-radius: 20px;
+      margin: 2px;
     }
   }
 }

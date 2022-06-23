@@ -1,6 +1,6 @@
 import {createStore} from 'vuex'
 import {getMusicLyric} from "@/axios/api/API-ItemMusic";
-import {getPhoneLogin} from "@/axios/api/API-Home";
+import {CaptchaLogin, getCaptcha, getPhoneLogin} from "@/axios/api/API-Home";
 
 export default createStore({
   state: {
@@ -85,6 +85,16 @@ export default createStore({
       let res;
       res = await getPhoneLogin(value);
       // console.log(res);
+      return res
+    },
+    getCaptcha:async function (context,value){
+      let res;
+      res = await getCaptcha(value)
+      return res
+    },
+    getLoginCaptcha:async function (context,value){
+      let res;
+      res = await CaptchaLogin(value)
       return res
     }
   },

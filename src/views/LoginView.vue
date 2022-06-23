@@ -23,12 +23,12 @@
       <div class="phone" v-show="CapShow">
         <input
             type="text"
-            name="phone"
-            v-model="phone"
+            name="captchaPhone"
+            v-model="captchaPhone"
             class="phone-content"
             placeholder="请输入手机号码"
         />
-        <a>获取验证码</a>
+        <a @click="getCaptcha">获取验证码</a>
       </div>
       <div class="phone" v-show="CapShow">
         <input
@@ -41,7 +41,8 @@
       </div>
       <button class="btn-cap" @click="CapShow=true" v-show="!CapShow">短信登陆</button>
       <button class="btn-cap" @click="CapShow=false" v-show="CapShow">手机登陆</button>
-      <button class="btn-log" @click="Login">登录</button>
+      <button class="btn-log" @click="Login" v-show="!CapShow">登录</button>
+      <button class="btn-log" @click="CaptchaLogin" v-show="CapShow">登录</button>
       <button class="btn-img" @click="ImgShow=true">二维码登录</button>
     </div>
 
@@ -67,6 +68,7 @@ export default {
       phone:'',
       password:'',
       captcha:'',
+      captchaPhone:'',
       ImgShow:false,
       CapShow:false
     }
@@ -89,6 +91,31 @@ export default {
       }else {
         alert("手机号或密码错误！")
         this.password=''
+      }
+    },
+    getCaptcha:async function(captcha){
+      let res2 = await this.$store.dispatch('getCaptcha',{phone:this.captchaPhone})
+      console.log('captcha',res2)
+      if (res2.data.code == 400){
+        alert("手机号码不符合规范")
+      } else if (res2.data.code == 200){
+        alert("短信已发送")
+      }
+    },
+    CaptchaLogin:async function (data){
+      console.log(this.captchaPhone)
+      let res3 = await this.$store.dispatch('getLoginCaptcha',{phone:this.captchaPhone,captcha:this.captcha})
+      console.log('login',res3)
+      if (res3.data.code == 200){
+        this.$store.commit('updateToken',res3.data.token)
+        this.$store.commit('updateIsLogin',true)
+        console.log('Login Success ID',res3.data.account.id)
+        this.$store.commit('updateId',res3.data.account.id)
+        let res2 = await getLoginUser(res3.data.account.id)
+        this.$store.commit('updateUser',res2)
+        await this.$router.push('/mine')
+      } else {
+        alert("验证码错误")
       }
     }
   },

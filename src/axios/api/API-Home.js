@@ -101,3 +101,16 @@ export function getLoginStatus(cookie){
         }
     })
 }
+//获取短信验证码
+export function getCaptcha(data){
+    return service({
+        method:"GET",
+        url:`/captcha/sent?phone=${data.phone}`
+    })
+}//短信登陆
+export function CaptchaLogin(data){
+    return service({
+        method:"POST",
+        url:`/login/cellphone?phone=${data.phone}&captcha=${data.captcha}`
+    })
+}

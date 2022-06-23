@@ -98,7 +98,7 @@ export default {
         width: 100%;
         height: 2.4rem;
         border-radius: 0.4rem;
-        //   position: absolute;
+        // position: absolute;
       }
       .playCount {
         position: absolute;
@@ -106,6 +106,7 @@ export default {
         right: 0.3rem;
         color: white;
         margin-top: 0.06rem;
+        transform: translate(-2px,-125px);
         .icon {
           width: 0.3rem;
           height: 0.3rem;

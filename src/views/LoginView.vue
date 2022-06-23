@@ -28,6 +28,7 @@
         v-model:show="ImgShow"
         position="top"
         :style="{ height: '50%', width: '100%' }"
+        round="round"
     >
       <ImgCode/>
     </van-popup>

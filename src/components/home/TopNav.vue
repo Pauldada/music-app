@@ -93,7 +93,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   background: rgba(255, 192, 203,0.9);
-  border-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 
   .topContent ul{
     height: 100%;
